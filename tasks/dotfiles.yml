@@ -1,0 +1,38 @@
+- name: Installing stow
+  command: brew install stow
+    
+- name: Cloning .dotfiles
+  ansible.builtin.git:
+    repo: 'git@github.com:alexguillamon/.dotfiles.git'
+    dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
+    recursive: yes
+    update: yes
+    accept_hostkey: yes
+    version: main
+
+- name: Create .zshrc
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/.dotfiles/zsh/.zshrc"
+    state: touch
+
+- name: Ensure the install script is executable
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.dotfiles/install"
+    mode: '0755'
+
+- name: Stow dotfiles
+  ansible.builtin.shell: "{{ lookup('env', 'HOME') }}/.dotfiles/install"
+  args:
+    executable: /bin/zsh
+
+- name: Setup Zi
+  ansible.builtin.shell: "source <(curl -sL init.zshell.dev); zzinit"
+  args:
+    executable: /bin/zsh
+
+- name: Add .zshrc_core to .zshrc
+  ansible.builtin.lineinfile:
+    path: "{{ lookup('env', 'HOME') }}/.zshrc"
+    line: "source {{ lookup('env', 'HOME') }}/.zshrc_core"
+    create: yes
+    insertafter: EOF

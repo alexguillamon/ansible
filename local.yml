@@ -1,0 +1,50 @@
+- hosts: localhost
+  # pre_tasks:
+  #   - name: Update Homebrew
+  #     command: brew update
+  #     tags:
+  #       - core
+  #       - install
+  tasks:
+    - name: Set up dotfiles
+      import_tasks: tasks/dotfiles.yml
+      tags:
+        - dotfiles
+        - core
+    
+    - name: Set up development environment
+      include_tasks: tasks/development.yml
+      tags:
+        - dev
+        - core
+    
+    - name: Set up Node
+      include_tasks: ./tasks/node.yml
+      tags:
+        - node
+        - core
+    
+    - name: Set up Python
+      include_tasks: ./tasks/python.yml
+      tags:
+        - python
+        - core
+
+    - name: Set up Core Productivity
+      include_tasks: ./tasks/core-productivity.yml
+      tags:
+        - productivity
+        - core
+
+    - name: Set up Personal Productivity
+      include_tasks: ./tasks/personal-productivity.yml
+      tags:
+        - productivity
+        - personal
+
+    - name: Set up security
+      include_tasks: ./tasks/security.yml
+      tags:
+        - security
+        - personal
+    
