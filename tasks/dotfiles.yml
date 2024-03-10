@@ -1,6 +1,8 @@
 - name: Installing stow
-  command: brew install stow
-    
+  ansible.builtin.package: 
+    name: stow
+    state: present
+        
 - name: Cloning .dotfiles
   ansible.builtin.git:
     repo: 'git@github.com:alexguillamon/.dotfiles.git'
@@ -29,6 +31,11 @@
   ansible.builtin.shell: "source <(curl -sL init.zshell.dev); zzinit"
   args:
     executable: /bin/zsh
+
+- name: Install subversion
+  ansible.builtin.package:
+    name: subversion
+    state: present
 
 - name: Add .zshrc_core to .zshrc
   ansible.builtin.lineinfile:
