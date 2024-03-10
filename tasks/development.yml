@@ -1,5 +1,5 @@
 - name: Create dev directory
-  ansible.builtin.file:
+  file:
     path: "{{ lookup('env', 'HOME') }}/dev"
     state: directory
     mode: '0755'

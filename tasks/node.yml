@@ -1,19 +1,40 @@
 - name: Install fnm
-  ansible.builtin.shell: "curl -fsSL https://fnm.vercel.app/install | bash"
+  shell: "curl -fsSL https://fnm.vercel.app/install | bash"
   args:
     executable: /bin/zsh
 
 - name: Install Node.js
-  ansible.builtin.shell: "fnm install --lts"
+  shell: "fnm install --lts"
   args:
     executable: /bin/zsh
 
 - name: Set default Node.js version
-  ansible.builtin.shell: "fnm default lts"
+  shell: "fnm default lts"
   args:
     executable: /bin/zsh
 
 - name: Install PNPM 
-  ansible.builtin.shell: "npm install -g pnpm"
+  shell: "npm install -g pnpm"
   args:
     executable: /bin/zsh
+
+- name: Install eslint
+  npm:
+    name: eslint
+    global: yes
+
+- name: Install Typescript server
+  npm:
+    name: typescript-language-server
+    global: yes
+
+- name: Install Typescript
+  npm:
+    name: typescript
+    global: yes
+  
+- name: Install TS-Node
+  npm:
+    name: ts-node
+    global: yes
+ 
