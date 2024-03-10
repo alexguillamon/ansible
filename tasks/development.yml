@@ -1,0 +1,113 @@
+- name: Create dev directory
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/dev"
+    state: directory
+    mode: '0755'
+
+- name: Install iTerm2
+  package:
+    name: iterm2
+    state: present
+  tags:
+    - iterm2
+    - terminal
+
+- name: Install VS Code
+  package:
+    name: visual-studio-code
+    state: present
+  tags:
+    - vscode
+    - editor
+
+- name: Install neovim
+  package:
+    name: neovim
+    state: present
+  tags:
+    - neovim
+    - vim
+    - editor
+
+- name: Install Docker
+  package:
+    name: docker
+    state: present
+  tags:
+    - docker
+
+
+- name: Install Go
+  package:
+    name: go
+    state: present
+  tags:
+    - go
+
+- name: Ensure GOPATH is set in .zshrc
+  lineinfile:
+    path: "{{ lookup('env', 'HOME') }}/.zshrc"
+    line: 'export GOPATH="$HOME/go"'
+    create: yes
+    insertafter: EOF
+  tags:
+    - go
+
+- name: Ensure GOPATH/bin is added to PATH in .zshrc
+  lineinfile:
+    path: "{{ lookup('env', 'HOME') }}/.zshrc"
+    line: 'export PATH="$PATH:$GOPATH/bin"'
+    create: yes
+    insertafter: EOF
+  tags:
+    - go
+
+
+- name: Download Zig archive
+  get_url:
+    url: https://ziglang.org/builds/zig-macos-aarch64-0.12.0-dev.3192+e2cbbd0c2.tar.xz
+    dest: "/tmp/zig-macos-aarch64-0.12.0-dev.3192+e2cbbd0c2.tar.xz"
+    mode: '0644'
+  tags:
+    - zig
+
+- name: Create Zig directory
+  file:
+    path: "{{ lookup('env', 'HOME') }}/zig"
+    state: directory
+    mode: '0755'
+  tags:
+    - zig
+
+- name: Extract Zig archive using tar
+  command:
+    cmd: "tar -xJf /tmp/zig-macos-aarch64-0.12.0-dev.3192+e2cbbd0c2.tar.xz -C {{ lookup('env', 'HOME') }}/zig"
+  tags:
+    - zig
+
+- name: Clean up downloaded Zig archive
+  file:
+    path: "/tmp/zig-macos-aarch64-0.12.0-dev.3192+e2cbbd0c2.tar.xz"
+    state: absent
+  tags:
+    - zig
+
+- name: Ensure zig is added to PATH in .zshrc
+  lineinfile:
+    path: "{{ lookup('env', 'HOME') }}/.zshrc"
+    line: 'export PATH="$HOME/zig:$PATH"'
+    create: yes
+    insertafter: EOF
+  tags:
+    - zig
+
+
+- name: Tap Font Cask
+  command: brew tap homebrew/cask-fonts
+  tags: 
+    - font
+
+- name: Install Fira Code Font
+  command: brew install --cask font-fira-code-nerd-font
+  tags: 
+    - font
