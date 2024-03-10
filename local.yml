@@ -19,7 +19,7 @@
         - core
     
     - name: Set up Node
-      include_tasks: ./tasks/node.yml
+      import_tasks: tasks/node.yml
       tags:
         - node
         - core
