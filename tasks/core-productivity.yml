@@ -44,4 +44,6 @@
   copy:
     src: "{{ lookup('env', 'HOME') }}/.dotfiles/rectangle/com.knollsoft.Rectangle.plist"
     dest: ~/Library/Preferences/com.knollsoft.Rectangle.plist
+  tags:
+    - rectangle
 
