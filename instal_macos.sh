@@ -33,7 +33,7 @@ read -p "Press Enter after you've signed into 1Password to continue with the set
 export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
 
 echo "Installing Running Playbook."
-ansible-playbook local.yml --tags "core"
+ansible-playbook ansible/local.yml --tags "core"
 
 # Reminder for manual security configurations
 echo "----------------------------------------------"
