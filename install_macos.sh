@@ -1,11 +1,4 @@
 #!/usr/bin/env bash
-
-# Check for Homebrew, install if we don't have it
-echo "Installing Homebrew..."
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"\
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-
 echo "Updating Homebrew..."
 brew update
 

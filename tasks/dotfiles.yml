@@ -14,7 +14,7 @@
 
 - name: Copy .zshrc file from template
   ansible.builtin.copy:
-    src: ansible/template/.zshrc
+    src: "{{ lookup('env', 'HOME') }}/ansible/template/.zshrc"
     dest: "{{ lookup('env', 'HOME') }}/.zshrc"
   tags:
     - dotfiles
