@@ -12,10 +12,19 @@
     accept_hostkey: yes
     version: main
 
-- name: Create .zshrc
-  file:
-    path: "{{ lookup('env', 'HOME') }}/.dotfiles/zsh/.zshrc"
-    state: touch
+- name: Copy .zshrc file from template
+  ansible.builtin.copy:
+    src: ansible/template/.zshrc
+    dest: "{{ lookup('env', 'HOME') }}/.zshrc"
+  tags:
+    - dotfiles
+
+- name: Remove .zprofile file
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/.zprofile"
+    state: absent
+  tags:
+    - dotfiles
 
 - name: Ensure the install script is executable
   file:
@@ -36,10 +45,3 @@
   package:
     name: subversion
     state: present
-
-- name: Add .zshrc_core to .zshrc
-  lineinfile:
-    path: "{{ lookup('env', 'HOME') }}/.zshrc"
-    line: "source {{ lookup('env', 'HOME') }}/.zshrc_core"
-    create: yes
-    insertafter: EOF

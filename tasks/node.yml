@@ -9,7 +9,7 @@
     executable: /bin/zsh
 
 - name: Set default Node.js version
-  shell: "fnm default lts"
+  shell: "fnm default lts-latest"
   args:
     executable: /bin/zsh
 

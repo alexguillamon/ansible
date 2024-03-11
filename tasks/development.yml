@@ -36,32 +36,12 @@
   tags:
     - docker
 
-
 - name: Install Go
   package:
     name: go
     state: present
   tags:
     - go
-
-- name: Ensure GOPATH is set in .zshrc
-  lineinfile:
-    path: "{{ lookup('env', 'HOME') }}/.zshrc"
-    line: 'export GOPATH="$HOME/go"'
-    create: yes
-    insertafter: EOF
-  tags:
-    - go
-
-- name: Ensure GOPATH/bin is added to PATH in .zshrc
-  lineinfile:
-    path: "{{ lookup('env', 'HOME') }}/.zshrc"
-    line: 'export PATH="$PATH:$GOPATH/bin"'
-    create: yes
-    insertafter: EOF
-  tags:
-    - go
-
 
 - name: Download Zig archive
   get_url:
@@ -81,7 +61,7 @@
 
 - name: Extract Zig archive using tar
   command:
-    cmd: "tar -xJf /tmp/zig-macos-aarch64-0.12.0-dev.3192+e2cbbd0c2.tar.xz -C {{ lookup('env', 'HOME') }}/zig"
+    cmd: "tar -xJf /tmp/zig-macos-aarch64-0.12.0-dev.3192+e2cbbd0c2.tar.xz -C {{ lookup('env', 'HOME') }}/zig --strip-components=1"
   tags:
     - zig
 
@@ -89,15 +69,6 @@
   file:
     path: "/tmp/zig-macos-aarch64-0.12.0-dev.3192+e2cbbd0c2.tar.xz"
     state: absent
-  tags:
-    - zig
-
-- name: Ensure zig is added to PATH in .zshrc
-  lineinfile:
-    path: "{{ lookup('env', 'HOME') }}/.zshrc"
-    line: 'export PATH="$HOME/zig:$PATH"'
-    create: yes
-    insertafter: EOF
   tags:
     - zig
 

@@ -1,16 +1,43 @@
-- name: Install Applications
+- name: Install Rectangle Pro
   homebrew_cask:
-    name: "{{ item }}"
+    name: rectangle-pro
     state: latest
-  with_items:
-    - rectangle-pro
-    - alfred
-    - karabiner-elements
-    - flux
-    - logi-options-plus
-    - akiflow
-    - brave-browser
-    - google-chrome
+
+- name: Install Alfred
+  homebrew_cask:
+    name: alfred
+    state: latest
+
+- name: Install Karabiner-Elements
+  homebrew_cask:
+    name: karabiner-elements
+    state: latest
+
+- name: Install Flux
+  homebrew_cask:
+    name: flux
+    state: latest
+
+- name: Install Logi Options Plus
+  homebrew_cask:
+    name: logi-options-plus
+    state: latest
+
+- name: Install Akiflow
+  homebrew_cask:
+    name: akiflow
+    state: latest
+
+- name: Install Brave Browser
+  homebrew_cask:
+    name: brave-browser
+    state: latest
+
+- name: Install Google Chrome
+  homebrew_cask:
+    name: google-chrome
+    state: latest
+
 
 - name: Add Rectangle Config
   copy:

@@ -1,9 +1,14 @@
-- name: Install Personal Applications
+- name: Install dropbox
   homebrew_cask:
-    name: "{{ item }}"
+    name: dropbox
     state: latest
-  with_items:
-    - notion
-    - dropbox
-    - nordvpn
 
+- name: Install notion
+  homebrew_cask:
+    name: notion
+    state: latest
+
+- name: Install nordvpn
+  homebrew_cask:
+    name: nordvpn
+    state: latest
