@@ -11,7 +11,7 @@
   tags:
     - iterm2
     - terminal
-  ignore_errors: true
+  
 
 
 - name: Install VS Code
@@ -21,7 +21,7 @@
   tags:
     - vscode
     - editor
-  ignore_errors: true
+  
 
 
 - name: Install neovim
@@ -32,7 +32,7 @@
     - neovim
     - vim
     - editor
-  ignore_errors: true
+  
 
 
 - name: Install Docker
@@ -41,7 +41,7 @@
     state: present
   tags:
     - docker
-  ignore_errors: true
+  
 
 - name: Install Go
   package:
@@ -49,7 +49,7 @@
     state: present
   tags:
     - go
-  ignore_errors: true
+  
 
 - name: Download Zig archive
   get_url:
@@ -58,7 +58,7 @@
     mode: '0644'
   tags:
     - zig
-  ignore_errors: true
+  
 
 - name: Create Zig directory
   file:
@@ -67,14 +67,14 @@
     mode: '0755'
   tags:
     - zig
-  ignore_errors: true
+  
 
 - name: Extract Zig archive using tar
   command:
     cmd: "tar -xJf /tmp/zig-macos-aarch64-0.12.0-dev.3192+e2cbbd0c2.tar.xz -C {{ lookup('env', 'HOME') }}/zig --strip-components=1"
   tags:
     - zig
-  ignore_errors: true
+  
 
 - name: Clean up downloaded Zig archive
   file:
@@ -82,17 +82,17 @@
     state: absent
   tags:
     - zig
-  ignore_errors: true
+  
 
 
 - name: Tap Font Cask
   command: brew tap homebrew/cask-fonts
   tags: 
     - font
-  ignore_errors: true
+  
 
 - name: Install Fira Code Font
   command: brew install --cask font-fira-code-nerd-font
   tags: 
     - font
-  ignore_errors: true
+  

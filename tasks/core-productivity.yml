@@ -37,7 +37,7 @@
   homebrew_cask:
     name: google-chrome
     state: latest
-  ignore_errors: true
+  
 
 
 - name: Add Rectangle Config
