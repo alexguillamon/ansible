@@ -1,0 +1,19 @@
+- name: Install Applications
+  homebrew_cask:
+    name: {{ item }}
+    state: latest
+  with_items:
+    - rectangle-pro
+    - alfred
+    - karabiner-elements
+    - flux
+    - logi-options-plus
+    - akiflow
+    - brave-browser
+    - google-chrome
+
+- name: Add Rectangle Config
+  copy:
+    src: "{{ lookup('env', 'HOME') }}/.dotfiles/rectangle/com.knollsoft.Rectangle.plist"
+    dest: ~/Library/Preferences/com.knollsoft.Rectangle.plist
+
