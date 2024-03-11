@@ -1,0 +1,15 @@
+- name: Install pyenv
+  homebrew:
+    name: pyenv
+    state: latest
+
+- name: Install latest Python
+  command: pyenv install 3.12
+
+- name: Set global Python version
+  command: pyenv global 3.12
+
+- name: Install PDM
+  homebrew:
+    name: pdm
+    state: latest
