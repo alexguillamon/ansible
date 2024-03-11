@@ -1,10 +1,10 @@
 - hosts: localhost
-  # pre_tasks:
-  #   - name: Update Homebrew
-  #     command: brew update
-  #     tags:
-  #       - core
-  #       - install
+  pre_tasks:
+    - name: Update Homebrew
+      command: brew update
+      tags:
+        - core
+
   tasks:
     - name: Set up dotfiles
       import_tasks: tasks/dotfiles.yml
@@ -42,9 +42,4 @@
         - productivity
         - personal
 
-    - name: Set up security
-      import_tasks: tasks/security.yml
-      tags:
-        - security
-        - personal
     
