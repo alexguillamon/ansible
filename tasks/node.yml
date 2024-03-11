@@ -13,6 +13,11 @@
   args:
     executable: /bin/zsh
 
+- name: Load fnm
+  shell: "exec zsh"
+  args:
+    executable: /bin/zsh
+
 - name: Install PNPM 
   shell: "npm install -g pnpm"
   args:
