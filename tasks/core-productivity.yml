@@ -1,6 +1,6 @@
 - name: Install Applications
   homebrew_cask:
-    name: {{ item }}
+    name: "{{ item }}"
     state: latest
   with_items:
     - rectangle-pro
