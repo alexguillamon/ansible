@@ -15,6 +15,8 @@ This will clone the repository and run the `install_macos.sh` script, which will
 ## TODOS:
 
 - [ ] Add error handling to not crash the script
+- [ ] make sure that the script is idempotent
+- [ ] make fnm install manual so that you can manage your own zshrc file
 - [ ] Add instructions on extra setup of each app
 - [ ] find a way to install pnpm in the same run as fnm
 - [ ] make sure that dotfiles and neovim install correctly

@@ -3,7 +3,7 @@
     name: pdm
     state: latest
 
-- name: Install Conda
+- name: Install pyenv
   homebrew:
-    name: anaconda
+    name: pyenv
     state: latest
