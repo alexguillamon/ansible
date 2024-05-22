@@ -7,6 +7,9 @@ export PATH="$PNPM_HOME:$PATH"
 # Direnv 
 eval "$(direnv hook zsh)"
 
+# Tmuxifier
+eval "$(tmuxifier init -)"
+
 # Mojo/Modular
 export MODULAR_HOME="$HOME/.modular"
 export PATH="$HOME/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
