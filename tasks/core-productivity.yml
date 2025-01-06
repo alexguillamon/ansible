@@ -1,8 +1,3 @@
-- name: Install Rectangle Pro
-  homebrew_cask:
-    name: rectangle-pro
-    state: latest
-
 - name: Install Alfred
   homebrew_cask:
     name: alfred
@@ -38,12 +33,8 @@
     name: google-chrome
     state: latest
   
-
-
-- name: Add Rectangle Config
-  copy:
-    src: "{{ lookup('env', 'HOME') }}/.dotfiles/rectangle/com.knollsoft.Rectangle.plist"
-    dest: ~/Library/Preferences/com.knollsoft.Rectangle.plist
-  tags:
-    - rectangle
+- name: Install Aerospace tiling manager
+  homebrew_cask:
+    name: nikitabobko/tap/aerospace
+    state: latest
 

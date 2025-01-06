@@ -4,25 +4,53 @@
     state: directory
     mode: '0755'
 
-- name: Install iTerm2
+- name: Install Alacritty
   package:
-    name: iterm2
+    name: alacritty
     state: present
   tags:
-    - iterm2
+    - alacritty
     - terminal
-  
 
-
-- name: Install VS Code
+- name: Install tmux
   package:
-    name: visual-studio-code
+    name: tmux
     state: present
   tags:
-    - vscode
-    - editor
-  
+    - clitools
+    - terminal
 
+- name: Cloning tpm
+  git:
+    repo: 'https://github.com/tmux-plugins/tpm'
+    dest: "{{ lookup('env', 'HOME') }}/.tmux/plugins/tpm/"
+    recursive: yes
+    update: yes
+    accept_hostkey: yes
+    version: main
+
+- name: Install fzf
+  package:
+    name: fzf
+    state: present
+  tags:
+    - clitools
+    - terminal
+
+- name: Install ripgrep 
+  package:
+    name: ripgrep
+    state: present
+  tags:
+    - clitools
+    - terminal
+
+- name: Install fd
+  package:
+    name: fd
+    state: present
+  tags:
+    - clitools
 
 - name: Install neovim
   package:
@@ -32,16 +60,6 @@
     - neovim
     - vim
     - editor
-  
-
-
-- name: Install Docker
-  package:
-    name: docker
-    state: present
-  tags:
-    - docker
-  
 
 - name: Install Go
   package:
@@ -49,50 +67,29 @@
     state: present
   tags:
     - go
-  
 
-- name: Download Zig archive
-  get_url:
-    url: https://ziglang.org/builds/zig-macos-aarch64-0.12.0-dev.3192+e2cbbd0c2.tar.xz
-    dest: "/tmp/zig-macos-aarch64-0.12.0-dev.3192+e2cbbd0c2.tar.xz"
-    mode: '0644'
+- name: Install VS Code
+  package:
+    name: visual-studio-code
+    state: present
   tags:
-    - zig
-  
+    - vscode
+    - editor
 
-- name: Create Zig directory
-  file:
-    path: "{{ lookup('env', 'HOME') }}/zig"
-    state: directory
-    mode: '0755'
+- name: Install Docker
+  package:
+    name: docker
+    state: present
   tags:
-    - zig
-  
-
-- name: Extract Zig archive using tar
-  command:
-    cmd: "tar -xJf /tmp/zig-macos-aarch64-0.12.0-dev.3192+e2cbbd0c2.tar.xz -C {{ lookup('env', 'HOME') }}/zig --strip-components=1"
-  tags:
-    - zig
-  
-
-- name: Clean up downloaded Zig archive
-  file:
-    path: "/tmp/zig-macos-aarch64-0.12.0-dev.3192+e2cbbd0c2.tar.xz"
-    state: absent
-  tags:
-    - zig
-  
-
+    - docker
 
 - name: Tap Font Cask
   command: brew tap homebrew/cask-fonts
   tags: 
     - font
   
-
-- name: Install Fira Code Font
-  command: brew install --cask font-fira-code-nerd-font
+- name: Install Jet Brains Nerd Font
+  command: brew install --cask font-jetbrains-mono-nerd-font
   tags: 
     - font
   

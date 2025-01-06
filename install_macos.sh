@@ -58,8 +58,6 @@ echo "   - Check 'Require an administrator password to access system-wide prefer
 echo "----------------------------------------------"
 read -p "Press Enter to continue after you have completed this step..."
 echo ""
-# Font setup reminder
-echo "Please remember to set up your preferred font in iterm"
-read -p "Press Enter to continue after you have set up the fonts..."
+read -p "Remember to finish the step to install the tpm plugins"
 
 echo "Setup is complete!"
